@@ -27,6 +27,7 @@ spec:
     spec:
       accessModes:
         - ReadWriteOnce
+      storageClassName: "ebs-sc"  # EBS
       resources:
         requests:
           storage: 1Gi
