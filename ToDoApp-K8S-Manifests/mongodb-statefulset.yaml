@@ -21,13 +21,19 @@ spec:
         volumeMounts:
         - name: mongodb-data
           mountPath: /data/db
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
   volumeClaimTemplates:
   - metadata:
       name: mongodb-data
     spec:
-      accessModes:
-        - ReadWriteOnce
-      storageClassName: "ebs-sc"  # EBS
+      accessModes: ["ReadWriteOnce"]  # Single node read/write access
+      storageClassName: ebs-sc  # Uses EKS Auto StorageClass
       resources:
         requests:
           storage: 1Gi
